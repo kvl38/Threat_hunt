@@ -1,0 +1,62 @@
+---
+title: "Lab_3"
+output: html_document
+date: "2022-10-26"
+---
+
+## Основы обработки данных с помощью R
+
+## Цель работы
+1. Развить практические навыки использования языка программирования R для обработки данных
+2. Закрепить знания базовых типов данных языка R
+3. Развить практические навыки использования функция обработки данных пакета dplyre - функций select(), filter(), mutate(), arrange(), group_by()
+
+## Задание
+Проанализировать встроенный пакет dplyr набор данных starwars с помощью языа R и ответить на вопросы:
+
+1) Сколько строк в датафрейме?
+
+```{r message=FALSE, warning=FALSE}
+install.packages("tidyverse")
+```
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+```{r}
+starwars <- starwars
+starwars %>% nrow()
+```
+Ответ: 87 rows
+
+2) Cколько столбцов в датафрейме?
+```{r}
+starwars %>% ncol()
+```
+Ответ: 14
+
+3) Как просмотреть примерный вид датафрейма?
+```{r}
+starwars %>% glimpse()
+```
+4) Сколько уникальных рас персонажей(species) представлено в данных?
+```{r}
+unique(starwars['species'], incomparables = FALSE)
+```
+Ответ: 38, включая NA.
+
+5)Найти самого высокого персонажа
+```{r}
+starwars['height'][is.na(starwars['height'])] <- 0
+starwarsDF <- as.data.frame(dplyr::starwars) %>% dplyr::filter(height == max(starwars['height']))
+starwarsDF
+```
+6) Найти всех персонажей ниже 170
+```{r}
+starwars_lo <- as.data.frame(dplyr::starwars) %>% dplyr::filter(height < 170)
+starwars_lo
+```
+7) Подсчитать ИМТ(индекс массы тела) для всех персонажей. Формула: i = масса / рост^2
+```{r}
+
+```
